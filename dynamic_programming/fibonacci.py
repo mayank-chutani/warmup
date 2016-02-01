@@ -1,5 +1,6 @@
 __author__ = 'mayank'
 
+
 def fib(n):
     """
     Finds the fibonacci value of n
