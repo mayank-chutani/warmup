@@ -25,13 +25,13 @@ class Node:
 
 
 class DoublyLinkedList:
-    hashmap = {}
 
     def __init__(self, capacity):
         self.head = None
         self.tail = None
         self.capacity = capacity
         self.length = 0
+        self.hashmap = {}
 
     def print_list(self):
         temp = self.head
@@ -39,15 +39,15 @@ class DoublyLinkedList:
             temp = temp.next
 
     def get(self, key):
-        if (key not in DoublyLinkedList.hashmap.keys()):
+        if (key not in self.hashmap.keys()):
             return -1
-        node = DoublyLinkedList.hashmap[key]
+        node = self.hashmap[key]
         self.delete_node(key)
         self.add_to_top(key, node)
         return node.data
 
     def put(self, key, data):
-        node = DoublyLinkedList.hashmap.get(key)
+        node = self.hashmap.get(key)
         if (node is not None):
             node.data = data
             if (self.head != node):
@@ -70,10 +70,10 @@ class DoublyLinkedList:
             head.prev = node
             node.next = head
             self.head = node
-        DoublyLinkedList.hashmap[key] = node
+        self.hashmap[key] = node
 
     def delete_node(self, key):
-        node = DoublyLinkedList.hashmap.get(key)
+        node = self.hashmap.get(key)
         if (node is None):
             return
         if (node.prev is not None):
@@ -84,7 +84,7 @@ class DoublyLinkedList:
             node.next.prev = node.prev
         else:
             self.tail = node.prev
-        DoublyLinkedList.hashmap.pop(key)
+        self.hashmap.pop(key)
 
 
 
